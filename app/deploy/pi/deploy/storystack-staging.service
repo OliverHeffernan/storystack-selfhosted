@@ -1,0 +1,17 @@
+[Unit]
+Description=StoryStack isolated staging backend
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ollieh/Documents/storystack-staging/app/server
+EnvironmentFile=/home/ollieh/Documents/storystack-staging/config/runtime.env
+ExecStart=/usr/bin/node /home/ollieh/Documents/storystack-staging/app/server/build/index.js
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,31 @@
+{
+  "name": "storystack-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node build/index.js",
+    "dev": "tsx --env-file=.env index.ts",
+    "migrate": "node build/migrate.js",
+    "import:supabase": "node build/import-supabase.js",
+    "test": "npm run build && node --test build/api.test.js"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/rate-limit": "^10.3.0",
+    "bcryptjs": "^3.0.2",
+    "csv-parse": "^7.0.3",
+    "fastify": "^5.6.2",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.4",
+    "@types/pg": "^8.15.5",
+    "tsx": "^4.20.6",
+    "typescript": "~5.9.3"
+  }
+}

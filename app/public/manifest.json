@@ -1,0 +1,17 @@
+{
+  "name": "StoryStack",
+  "short_name": "StoryStack",
+  "description": "A progressive web app for tracking your reading list",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#CD5C5C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

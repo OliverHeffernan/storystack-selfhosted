@@ -1,0 +1,37 @@
+# Private runtime configuration and credentials (keep the example env file).
+/config/
+/secrets/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Previous releases and database snapshots are not source files.
+/rollback/
+/backups/
+/snapshots/
+*.dump
+*.backup
+*.sql.gz
+
+# Dependencies and generated frontend/backend output.
+node_modules/
+/app/dist/
+/app/dist-ssr/
+/app/server/build/
+coverage/
+*.tsbuildinfo
+.eslintcache
+
+# Runtime logs and local working files.
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+**/.amp/in/
+.DS_Store

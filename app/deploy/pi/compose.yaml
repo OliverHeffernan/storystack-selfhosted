@@ -1,0 +1,39 @@
+name: storystack-staging
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    entrypoint: ["/bin/sh", "/usr/local/bin/storystack-entrypoint.sh"]
+    command: ["postgres"]
+    ports:
+      - "127.0.0.1:55432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets:
+      - postgres_password
+      - owner_password
+      - runtime_password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./deploy/postgres-entrypoint.sh:/usr/local/bin/storystack-entrypoint.sh:ro
+      - ./initdb/001-roles.sh:/docker-entrypoint-initdb.d/001-roles.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d storystack"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+secrets:
+  postgres_password:
+    file: ./secrets/postgres_password
+  owner_password:
+    file: ./secrets/owner_password
+  runtime_password:
+    file: ./secrets/runtime_password
+
+volumes:
+  pgdata:
+    name: storystack_staging_pgdata
